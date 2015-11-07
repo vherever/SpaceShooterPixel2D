@@ -3,6 +3,10 @@ using System.Collections;
 
 public class PlayerControl : MonoBehaviour {
 
+	public GameObject PlayerButtonGO;//player's button prefab
+	public GameObject bulletPosition01;
+	public GameObject bulletPosition02;
+
     public float speed;
 
 	// Use this for initialization
@@ -12,6 +16,14 @@ public class PlayerControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown ("space")) {
+			GameObject bullet01 = (GameObject)Instantiate(PlayerButtonGO);
+			bullet01.transform.position = bulletPosition01.transform.position; //set the bullet initial position
+
+			GameObject bullet02 = (GameObject)Instantiate(PlayerButtonGO);
+			bullet02.transform.position = bulletPosition02.transform.position;
+		}
+
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 

@@ -20,5 +20,12 @@ public class PlayerBullet : MonoBehaviour {
 
         //Update the bullet's position
         transform.position = position;
+
+		//top-right point of the screen
+		Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2 (1, 1));
+
+		if (transform.position.y > max.y) {
+			Destroy(gameObject);
+		}
 	}
 }
