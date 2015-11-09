@@ -6,6 +6,7 @@ public class PlayerControl : MonoBehaviour {
 	public GameObject PlayerButtonGO;//player's button prefab
 	public GameObject bulletPosition01;
 	public GameObject bulletPosition02;
+    public GameObject ExplosionGO;//explosion prefab
 
     public float speed;
 
@@ -55,5 +56,23 @@ public class PlayerControl : MonoBehaviour {
 
         //Update the player's position
         transform.position = pos;
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if((col.tag == "EnemyShip") || (col.tag == "EnemyBullet"))
+        {
+            PlayExplosion();
+
+            Destroy(gameObject);
+        }
+    }
+
+    void PlayExplosion()
+    {
+        GameObject explosion = (GameObject)Instantiate(ExplosionGO);
+
+        //set the position of the explosion
+        explosion.transform.position = transform.position;
     }
 }
