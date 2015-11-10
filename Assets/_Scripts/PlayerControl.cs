@@ -24,6 +24,9 @@ public class PlayerControl : MonoBehaviour {
         lives = MaxLives;
         LivesUIText.text = lives.ToString();
 
+        //Reset the player position to the center of the screen
+        transform.position = new Vector2(0, 0);
+
         //set this game object to active
         gameObject.SetActive(true);
     }
