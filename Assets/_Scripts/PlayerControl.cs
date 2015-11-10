@@ -1,14 +1,32 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerControl : MonoBehaviour {
+
+    public GameObject GameManagerGO;//reference to game manager
 
 	public GameObject PlayerButtonGO;//player's button prefab
 	public GameObject bulletPosition01;
 	public GameObject bulletPosition02;
     public GameObject ExplosionGO;//explosion prefab
 
+    //Reference to the lives ui text
+    public Text LivesUIText;
+
+    const int MaxLives = 3;//maximum player lives
+    int lives;//current player lives
+
     public float speed;
+
+    public void Init()
+    {
+        lives = MaxLives;
+        LivesUIText.text = lives.ToString();
+
+        //set this game object to active
+        gameObject.SetActive(true);
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -64,7 +82,16 @@ public class PlayerControl : MonoBehaviour {
         {
             PlayExplosion();
 
-            Destroy(gameObject);
+            lives--;
+            LivesUIText.text = lives.ToString();
+
+            if(lives == 0)
+            {
+                //Change game manager state to game over
+                GameManagerGO.GetComponent<GameManager>().SetGameManagerState(GameManager.GameManagerState.GameOver);
+
+                gameObject.SetActive(false);                
+            }
         }
     }
 
