@@ -39,6 +39,10 @@ public class PlayerControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown ("space")) {
+
+            //play the fire sound effect
+            GetComponent<AudioSource>().Play();
+
 			GameObject bullet01 = (GameObject)Instantiate(PlayerButtonGO);
 			bullet01.transform.position = bulletPosition01.transform.position; //set the bullet initial position
 

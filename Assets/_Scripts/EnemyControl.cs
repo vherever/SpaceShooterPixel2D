@@ -55,6 +55,7 @@ public class EnemyControl : MonoBehaviour {
 
         //set the position of explosion
         explosion.transform.position = transform.position;
+
     }
 }
 
