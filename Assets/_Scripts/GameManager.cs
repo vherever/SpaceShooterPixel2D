@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour {
     public GameObject GameOverGO;//reference to game over bg
     public GameObject scoreUITextGO;//reference to the score text UI game object
 	public GameObject TimeCounterGO;//reference to the time counter game object
-    
+	public GameObject GameTitleGO;//reference to the GameTitleGO
+
 	public enum GameManagerState
     {
         Opening,
@@ -35,6 +36,9 @@ public class GameManager : MonoBehaviour {
                 //Hide game over
                 GameOverGO.SetActive(false);
 
+				//Display the game title
+				GameTitleGO.SetActive(true);
+
                 //Set play button visible
                 playButton.SetActive(true);
 
@@ -46,6 +50,9 @@ public class GameManager : MonoBehaviour {
 
                 //hide play button on game play state
                 playButton.SetActive(false);
+
+				//Hide the game title
+				GameTitleGO.SetActive(false);
 
                 //set the player visible and init the player
                 playerShip.GetComponent<PlayerControl>().Init();
