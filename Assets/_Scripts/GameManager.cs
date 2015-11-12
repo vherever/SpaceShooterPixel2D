@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour {
     public GameObject enemySpawner;//reference to enemy spawner
     public GameObject GameOverGO;//reference to game over bg
     public GameObject scoreUITextGO;//reference to the score text UI game object
-
-    public enum GameManagerState
+	public GameObject TimeCounterGO;//reference to the time counter game object
+    
+	public enum GameManagerState
     {
         Opening,
         Gameplay,
@@ -52,8 +53,14 @@ public class GameManager : MonoBehaviour {
                 //Start enemy spawner
                 enemySpawner.GetComponent<EnemySpawner>().ScheduleEnemySpawner();
 
+				//start the time counter
+				TimeCounterGO.GetComponent<TimeCounter>().StartTimeCounter();
+
                 break;
             case GameManagerState.GameOver:
+				
+				//stop the time counter
+				TimeCounterGO.GetComponent<TimeCounter>().StopTimeCounter();
 
                 //Stop enemy spawning
                 enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawning();
